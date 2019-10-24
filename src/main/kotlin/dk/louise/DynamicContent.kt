@@ -3,6 +3,7 @@ package dk.louise
 import io.ktor.application.call
 import io.ktor.html.respondHtml
 import io.ktor.request.receiveParameters
+import io.ktor.response.respondRedirect
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.post
@@ -89,10 +90,12 @@ fun main() {
                 // We can read data submitted via form like this:
                 val parameters = call.receiveParameters()
 
-                val yourName = parameters["yourName"]
+                val yourName = parameters["yourName"].takeIf { !it.isNullOrBlank() } ?: "Anon"
+                val yourComment = parameters["yourComment"] ?: ""
 
-                // TODO Fill in the rest
-                call.respondText("We are not done yet!")
+                comments.add(Comment(yourName, yourComment))
+
+                call.respondRedirect("/")
             }
         }
     }.start(wait = true)
