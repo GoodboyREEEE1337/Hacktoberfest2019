@@ -87,6 +87,8 @@ fun main() {
                 }
             }
 
+            gallery()
+
             get("/") {
                 // You can generate HTML via Kotlin with functions which look like normal HTML
                 call.respondHtml {
@@ -274,32 +276,6 @@ fun main() {
                                     src = "http://cullyskitchen.com/wp-content/uploads/2011/09/cmain.jpg"
                                 }
                             }
-                        }
-                    }
-                }
-            }
-
-            get("/Gallery") {
-                call.respondHtml {
-                    myTemplate("The Goodboy Gallery") {
-                        h1(classes = "header first-header") {
-                            +"This is the goodboy gallery"
-                        }
-                        img(classes = "media", alt = "A goodboy and his bitch mummy") {
-                            src =
-                                "https://preview.redd.it/i09rw72u1zq01.jpg?width=960&crop=smart&s=2a2bb09f77cf92b5ce06be22f6814c3ec088980a"
-                        }
-                        img(classes = "media", alt = "A goodboy aggravated by the insufferable Chads") {
-                            src = "https://i.redd.it/ljho9u4pdnh11.jpg"
-                        }
-                        img(classes = "media", alt = "A goodboy showing off his Dewie collection") {
-                            src = "https://pbs.twimg.com/media/C2dMmsyXgAEDqf7.jpg"
-                        }
-                        img(
-                            classes = "media",
-                            alt = "A goodboy being spotted on the rare occasion of being outside his lair"
-                        ) {
-                            src = "https://i.redd.it/qtzscvijp1411.jpg"
                         }
                     }
                 }

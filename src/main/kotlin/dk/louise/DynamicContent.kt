@@ -12,12 +12,6 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import kotlinx.html.*
 
-// We define a "Comment" to be a [user] and a [message]
-data class Comment(
-    val user: String,
-    val message: String
-)
-
 // The system already has some comments:
 val comments = arrayListOf(
     Comment("Fie", "Jeg er en hund"),
