@@ -39,7 +39,7 @@ val images = arrayListOf(
 )
 
 fun DIV.image(theImage: Image, id: Int) {
-    a(href = "/Gallery/$id") {
+    a(href = "/Gallery/$id", classes = "gallery-img") {
         img(classes = "media", alt = theImage.alt) {
             src = theImage.src
         }
@@ -74,43 +74,55 @@ fun Routing.gallery() {
                     +picture.alt
                 }
                 image(picture, id)
+                hr(classes = "comment-line")
+                h2(classes = "header") {
+                    +"Comment section"
+                }
                 for (comment in comments) {
-                    div {
-                        i { +(comment.user) }
+                    div(classes = "posted-comment") {
+                        +(comment.user)
                         +" said: "
-                        +(comment.message)
+                        br()
+                        comment.message.split("\n").forEach { line ->
+                            span (classes = "comment-text") { +(line) }
+                            br()
+                        }
                     }
                 }
 
-                form(method = FormMethod.post, action = "/Gallery/comment/$id") {
-                    style = "margin-top: 30px" // We can even add CSS!
+                form(classes = "comment-container", method = FormMethod.post, action = "/Gallery/comment/$id") {
+                    div {
+                        label(classes = "comment-label") {
+                            +"Name"
+                            br()
 
-                    label {
-                        +"Name"
+                            // The name property determines where we can find the data.
+                            input(classes = "comment-form name-box", name = "yourName", type = InputType.text) {
+                                placeholder = "Write your name here"
+                            }
 
-                        br()
-
-                        // The name property determines where we can find the data.
-                        input(name = "yourName", type = InputType.text) {
-                            placeholder = "Louise"
+                            br()
                         }
-
-                        br()
                     }
 
-                    label {
-                        +"Comment"
-                        br()
-                        // The name property determines where we can find the data.
-                        input(name = "yourComment", type = InputType.text) {
-                            placeholder = "Awesome stuff!"
-                        }
 
-                        br()
+                    div {
+                        label(classes = "comment-label") {
+                            +"Comment"
+                            br()
+                            // The name property determines where we can find the data.
+                            textArea(classes = "comment-form comment-box") {
+                                name = "yourComment"
+                                placeholder = "Write your comment here"
+                            }
+
+                            br()
+                        }
                     }
 
-                    input(type = InputType.submit) {
-                        value = "Submit"
+
+                    input(classes = "comment-form comment-submit", type = InputType.submit) {
+                        value = "Submit comment!"
                     }
                 }
             }
