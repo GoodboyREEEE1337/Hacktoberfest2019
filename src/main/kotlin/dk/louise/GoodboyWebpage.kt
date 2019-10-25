@@ -45,9 +45,9 @@ fun HTML.myTemplate(pageTitle: String, body: DIV.() -> Unit) {
                 +"Gallery"
             }
 
-            form(method = FormMethod.get, action = "./") {
+            form(classes = "login", method = FormMethod.get, action = "./") {
                 label {
-                    span(classes = "login") { +"Login:" }
+                    span { +"Login:" }
                     input(type = InputType.text, name = "Username") {
                         placeholder = "Username"
                     }
@@ -61,7 +61,7 @@ fun HTML.myTemplate(pageTitle: String, body: DIV.() -> Unit) {
             }
         }
 
-        div(classes = "main-content with-menu") {
+        div(classes = "main-content background with-menu") {
             div(classes = "inner-content") {
                 body()
             }
@@ -441,14 +441,18 @@ fun main() {
 
                     body(classes = "alert") {
                         div(classes = "main-content") {
-                            br
-                            h1(classes = "header bordered warning") {
-                                strong {
-                                    +"NO CHADS OR STACIES ALLOWED. GET OUT, NORMIES! REEEEEEEEEEEEEEEEEEEEEEE."
+                            br()
+                            div(classes = "header bordered warning") {
+                                h1{
+                                    strong {
+                                        +"NO CHADS OR STACIES ALLOWED. GET OUT, NORMIES! REEEEEEEEEEEEEEEEEEEEEEE."
+                                    }
                                 }
                             }
-                            h2(classes = "header bordered warning") {
-                                +"BTW barbecue sauce on tendies is fucking heresy REEEEEEEEEEEE!!!   "
+                            div(classes = "header bordered warning") {
+                                h2{
+                                    +"BTW barbecue sauce on tendies is fucking heresy REEEEEEEEEEEE!!!   "
+                                }
                             }
                         }
                     }
